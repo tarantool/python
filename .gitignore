@@ -1,0 +1,8 @@
+CMakeFiles
+CMakeCache.txt
+CTestTestfile.cmake
+Makefile
+*.dylib
+dofile_python_bridge.c
+dofile_python_bridge.o
+*.pyc
