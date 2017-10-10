@@ -8,12 +8,6 @@ execute_process(COMMAND ${PYPY_BIN} ${PROJECT_SOURCE_DIR}/python_paths.py lib
 
 find_library(PYPY_LIBRARY NAMES pypy-c HINTS "${PYPY_LIBRARY_HINT}")
 
-message("PYPY_BINARY: ${PYPY_BIN}")
-message("PYPY_INCLUDE_HINT: ${PYPY_INCLUDE_HINT}")
-message("PYPY_LIBRARY_HINT: ${PYPY_LIBRARY_HINT}")
-message("PYPY_INCLUDE_DIR: ${PYPY_INCLUDE_DIR}")
-message("PYPY_LIBRARY: ${PYPY_LIBRARY}")
-
 include(FindPackageHandleStandardArgs)
 
 find_package_handle_standard_args(PyPy
