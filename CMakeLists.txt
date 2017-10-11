@@ -1,10 +1,9 @@
 cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 
-project(ckit C)
-# project(ckit C CXX)
+project(python C)
 
 if(NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE RelWithDebInfo)
+    set(CMAKE_BUILD_TYPE Debug)
 endif()
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}" ${CMAKE_MODULE_PATH})
 
@@ -46,11 +45,12 @@ message("SOURCE DIR: " ${PROJECT_SOURCE_DIR})
 
 add_custom_command(OUTPUT dofile_python_bridge.c
   COMMAND pypy ${PROJECT_SOURCE_DIR}/dofile_python_bridge.py
-  MAIN_DEPENDENCY ${PROJECT_SOURCE_DIR}/dofile_python_bridge.py)
+  MAIN_DEPENDENCY ${PROJECT_SOURCE_DIR}/dofile_python_bridge.py
+  DEPENDS fiber.h fiber.py)
 
 
 # Add C library
-add_library(python SHARED python.c dofile_python_bridge.c)
+add_library(python SHARED python.c dofile_python_bridge.c fiber.c)
 target_link_libraries(python ${MSGPUCK_LIBRARIES})
 target_link_libraries(python ${PYPY_LIBRARIES})
 set_target_properties(python PROPERTIES PREFIX "" OUTPUT_NAME "python")
